@@ -151,7 +151,7 @@ namespace ClassesBot
             string FinalMessage = "";
 
             
-            //TODO from screenshot-1
+            //TODO GET KEY
 
 
 
