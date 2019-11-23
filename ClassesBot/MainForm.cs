@@ -151,7 +151,7 @@ namespace ClassesBot
             string FinalMessage = "";
 
             
-            //TODO PLAN
+            //TODO from screenshot-1
 
 
 
