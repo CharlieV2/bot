@@ -8,11 +8,17 @@ namespace ClassesBot.Resources
 {
     public static class Variables
     {
-        public static string groupID = "0";
+        // mstu
         public static string group = "set the group in settings";
-        public static string accessToken = "";
-        public static string patternOutput = "{0}\n ->{2}<-\n{1} << {5} >>\n{3} {4}\n\n";
+        public static string faculty = "";
+        public static string course = "";
 
+        // vk
+        public static string vkgroupID = "0";
+        public static string accessToken = "";
+
+        // program
+        public static string patternOutput = "{0}\n ->{2}<-\n{1} << {5} >>\n{3} {4}\n\n";
         public static string Date = DateTime.Now.AddDays(1).ToString("yyyy-M-d");
     }
 }

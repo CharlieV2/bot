@@ -22,13 +22,16 @@ namespace ClassesBot
         void UpdateForm(object sender, EventArgs e)
         {
             if (Visible == true)
-            {hh
+            {
                 // Установка текущих значений в поля редактирования
-                VKGroupText.Text = Variables.groupID;
-                patternOutputText.Text = Variables.patternOutput;
-                GroupText.Text = (Variables.group == "set the group in settings") ? "" : Variables.group;
-                TokenText.Text = Variables.accessToken;
+                Group.Text = (Variables.group == "set the group in settings") ? "" : Variables.group;
+                Faculty.Text = Variables.faculty;
+                Course.Text = Variables.course;
 
+                VKGroupID.Text = Variables.vkgroupID;
+                Token.Text = Variables.accessToken;
+
+                patternOutputText.Text = Variables.patternOutput;
                 DateText.Text = Variables.Date;
             }
         }
@@ -38,11 +41,14 @@ namespace ClassesBot
         private void Back_Button_Click(object sender, EventArgs e)
         {
             // Сохранение новых значений
-            Variables.groupID = VKGroupText.Text;
-            Variables.patternOutput = patternOutputText.Text;
-            Variables.group = (GroupText.Text == "") ? "set the group in settings" : GroupText.Text;
-            Variables.accessToken = (TokenText.Text == "") ? "" : TokenText.Text;
+            Variables.group = (Group.Text == "") ? "set the group in settings" : Group.Text;
+            Variables.faculty = Faculty.Text;
+            Variables.course = Course.Text;
 
+            Variables.vkgroupID = VKGroupID.Text;
+            Variables.accessToken = (Token.Text == "") ? "" : Token.Text;
+
+            Variables.patternOutput = patternOutputText.Text;
             Variables.Date = DateText.Text;
 
             Visible = false;

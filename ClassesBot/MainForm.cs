@@ -50,7 +50,7 @@ namespace ClassesBot
             #region Read config
 
             if (!(File.Exists(MainPath)))
-                File.WriteAllText(MainPath, $"%group={Variables.group}%groupID={Variables.groupID}%accessToken={Variables.accessToken}%patternOutput={Variables.patternOutput}");
+                File.WriteAllText(MainPath, $"%group={Variables.group}%groupID={Variables.vkgroupID}%accessToken={Variables.accessToken}%patternOutput={Variables.patternOutput}");
 
             string[] InputVariables = File.ReadAllText(MainPath).Split('%');
 
@@ -61,8 +61,14 @@ namespace ClassesBot
                     case "group":
                         Variables.group = item.Split('=')[1];
                         break;
+                    case "faculty":
+                        Variables.faculty = item.Split('=')[1];
+                        break;
+                    case "course":
+                        Variables.course = item.Split('=')[1];
+                        break;
                     case "groupID":
-                        Variables.groupID = item.Split('=')[1];
+                        Variables.vkgroupID = item.Split('=')[1];
                         break;
                     case "accessToken":
                         Variables.accessToken = item.Split('=')[1];
@@ -133,52 +139,111 @@ namespace ClassesBot
         {
             WebClient webclient = new WebClient();
             webclient.Encoding = Encoding.GetEncoding("windows-1251");
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            string url = "http://www.mstu.edu.ru/study/timetable/";
+            string tableResponse = "";
+            string numInstitute = "0";
+
+
+            #region Get members IDs
 
             // Получение ID участников группы
             Members_Text.Invoke(new Action(() => Members_Text.Text = ""));
             Message_Text.Invoke(new Action(() => Message_Text.Text = ""));
 
             string[] separator = { "[", "]" };
-            string[] Members = (webclient.DownloadString($"{VkRequestPattern}groups.getMembers?group_id={Variables.groupID}&access_token={Variables.accessToken}&v=5.102")).Split(separator, StringSplitOptions.RemoveEmptyEntries)[1].Split(',');
+            string[] Members = (webclient.DownloadString($"{VkRequestPattern}groups.getMembers?group_id={Variables.vkgroupID}&access_token={Variables.accessToken}&v=5.102")).Split(separator, StringSplitOptions.RemoveEmptyEntries)[1].Split(',');
 
             foreach (string item in Members)
             {
                 Members_Text.Invoke(new Action(() => Members_Text.Text += item + "\n"));
             }
+            #endregion
 
+            #region Get schedule table
 
+            // Получение таблицы расписаний
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "POST";
 
-            string FinalMessage = "";
-
-            
-            //TODO GET KEY
-
-
-
-
-
-
-            #region Get Classes
-
-            string Pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
-            foreach (Match match in Regex.Matches(HtmlPage, Pattern))
-                /*
-                 * 0 - Номер пары
-                 * 1 - Группа
-                 * 2 - Предмет
-                 * 3 - Тип занятия
-                 * 4 - Преподаватель
-                 * 5 - Кабинет
-                 */
-                FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
-
-            // Обозначение отсутствия пар
-            if (FinalMessage.Trim() == "")
+            switch (Variables.faculty.ToLower())
             {
-                FinalMessage = @"¯\_(ツ)_/¯";
+                case "иат":
+                    numInstitute = "1";
+                    break;
+                case "ети":
+                    numInstitute = "2";
+                    break;
+                case "има":
+                    numInstitute = "3";
+                    break;
+                default:
+                    break;
             }
 
+            string data = $"mode=1&facs={numInstitute}&courses={Variables.course}";
+            byte[] byteArray = Encoding.GetEncoding("windows-1251").GetBytes(data);
+
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+
+            using (Stream dataStream = request.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+            }
+
+            WebResponse response = request.GetResponse();
+            using (Stream stream = response.GetResponseStream())
+            {
+                using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
+                {
+                    tableResponse = reader.ReadToEnd();
+                }
+            }
+            response.Close();
+
             #endregion
+
+            #region Get Key
+
+            // получение ключа
+            string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", ".*?", Variables.group);
+
+            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
+            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
+
+            //string key = Regex.Matches(tableResponse, pattern)[0].ToString();
+            var mathes = Regex.Matches(tableResponse, pattern);
+
+            File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", mathes.Count.ToString() /*tableResponse*/);
+
+            #endregion
+
+            //#region Get Classes
+            //string FinalMessage = "";
+
+            //string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
+
+            //pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
+            //foreach (Match match in Regex.Matches(HtmlPage, pattern))
+            //    /*
+            //     * 0 - Номер пары
+            //     * 1 - Группа
+            //     * 2 - Предмет
+            //     * 3 - Тип занятия
+            //     * 4 - Преподаватель
+            //     * 5 - Кабинет
+            //     */
+            //    FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
+
+            //// Обозначение отсутствия пар
+            //if (FinalMessage.Trim() == "")
+            //{
+            //    FinalMessage = @"¯\_(ツ)_/¯";
+            //}
+
+            //#endregion
 
 
             Download_but.Invoke(new Action(() => Download_but.Enabled = true));
@@ -226,7 +291,7 @@ namespace ClassesBot
         {
             e.Cancel = true;
 
-            File.WriteAllText(MainPath, $"group={Variables.group}%groupID={Variables.groupID}%accessToken={Variables.accessToken}%patternOutput={Variables.patternOutput}");
+            File.WriteAllText(MainPath, $"faculty={Variables.faculty}%course={Variables.course}%group={Variables.group}%groupID={Variables.vkgroupID}%accessToken={Variables.accessToken}%patternOutput={Variables.patternOutput}");
 
             e.Cancel = false;
         }

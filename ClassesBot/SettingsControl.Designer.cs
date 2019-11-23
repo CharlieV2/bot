@@ -37,12 +37,12 @@
             this.CreatorLink = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.GroupText = new System.Windows.Forms.TextBox();
+            this.Group = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.TokenText = new System.Windows.Forms.TextBox();
+            this.Token = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.VKGroupText = new System.Windows.Forms.TextBox();
+            this.VKGroupID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,6 +55,12 @@
             this.patternOutputText = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.Faculty = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.Course = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Back_Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
@@ -94,7 +100,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(14, 156);
+            this.label4.Location = new System.Drawing.Point(14, 218);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 21);
             this.label4.TabIndex = 7;
@@ -148,17 +154,17 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Help";
             // 
-            // GroupText
+            // Group
             // 
-            this.GroupText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.GroupText.Font = new System.Drawing.Font("Segoe UI Light", 11F);
-            this.GroupText.Location = new System.Drawing.Point(99, 39);
-            this.GroupText.Name = "GroupText";
-            this.GroupText.Size = new System.Drawing.Size(100, 20);
-            this.GroupText.TabIndex = 12;
-            this.GroupText.TabStop = false;
-            this.GroupText.Text = "Text";
-            this.GroupText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Group.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Group.Font = new System.Drawing.Font("Segoe UI Light", 11F);
+            this.Group.Location = new System.Drawing.Point(99, 39);
+            this.Group.Name = "Group";
+            this.Group.Size = new System.Drawing.Size(100, 20);
+            this.Group.TabIndex = 12;
+            this.Group.TabStop = false;
+            this.Group.Text = "Text";
+            this.Group.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel2
             // 
@@ -171,48 +177,48 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.LightGray;
-            this.panel4.Location = new System.Drawing.Point(99, 176);
+            this.panel4.Location = new System.Drawing.Point(99, 238);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(160, 1);
             this.panel4.TabIndex = 13;
             // 
-            // TokenText
+            // Token
             // 
-            this.TokenText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TokenText.Font = new System.Drawing.Font("Segoe UI Light", 11F);
-            this.TokenText.Location = new System.Drawing.Point(99, 156);
-            this.TokenText.Name = "TokenText";
-            this.TokenText.Size = new System.Drawing.Size(160, 20);
-            this.TokenText.TabIndex = 14;
-            this.TokenText.TabStop = false;
-            this.TokenText.Text = "Text";
+            this.Token.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Token.Font = new System.Drawing.Font("Segoe UI Light", 11F);
+            this.Token.Location = new System.Drawing.Point(99, 218);
+            this.Token.Name = "Token";
+            this.Token.Size = new System.Drawing.Size(160, 20);
+            this.Token.TabIndex = 14;
+            this.Token.TabStop = false;
+            this.Token.Text = "Text";
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.LightGray;
-            this.panel5.Location = new System.Drawing.Point(99, 149);
+            this.panel5.Location = new System.Drawing.Point(99, 211);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(100, 1);
             this.panel5.TabIndex = 13;
             // 
-            // VKGroupText
+            // VKGroupID
             // 
-            this.VKGroupText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VKGroupText.Font = new System.Drawing.Font("Segoe UI Light", 11F);
-            this.VKGroupText.Location = new System.Drawing.Point(99, 129);
-            this.VKGroupText.Name = "VKGroupText";
-            this.VKGroupText.Size = new System.Drawing.Size(100, 20);
-            this.VKGroupText.TabIndex = 15;
-            this.VKGroupText.TabStop = false;
-            this.VKGroupText.Text = "Text";
-            this.VKGroupText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.VKGroupID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.VKGroupID.Font = new System.Drawing.Font("Segoe UI Light", 11F);
+            this.VKGroupID.Location = new System.Drawing.Point(99, 191);
+            this.VKGroupID.Name = "VKGroupID";
+            this.VKGroupID.Size = new System.Drawing.Size(100, 20);
+            this.VKGroupID.TabIndex = 15;
+            this.VKGroupID.TabStop = false;
+            this.VKGroupID.Text = "Text";
+            this.VKGroupID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(14, 129);
+            this.label5.Location = new System.Drawing.Point(14, 191);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 21);
             this.label5.TabIndex = 14;
@@ -234,16 +240,16 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(14, 105);
+            this.label9.Location = new System.Drawing.Point(14, 167);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 21);
+            this.label9.Size = new System.Drawing.Size(115, 21);
             this.label9.TabIndex = 17;
-            this.label9.Text = "Community";
+            this.label9.Text = "VK Community";
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.LightGray;
-            this.panel6.Location = new System.Drawing.Point(99, 86);
+            this.panel6.Location = new System.Drawing.Point(99, 150);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(100, 1);
             this.panel6.TabIndex = 13;
@@ -252,7 +258,7 @@
             // 
             this.DateText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DateText.Font = new System.Drawing.Font("Segoe UI Light", 11F);
-            this.DateText.Location = new System.Drawing.Point(99, 66);
+            this.DateText.Location = new System.Drawing.Point(99, 130);
             this.DateText.Name = "DateText";
             this.DateText.Size = new System.Drawing.Size(100, 20);
             this.DateText.TabIndex = 15;
@@ -265,7 +271,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label10.ForeColor = System.Drawing.Color.Gray;
-            this.label10.Location = new System.Drawing.Point(14, 66);
+            this.label10.Location = new System.Drawing.Point(14, 130);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 21);
             this.label10.TabIndex = 14;
@@ -338,12 +344,81 @@
             this.label12.TabIndex = 21;
             this.label12.Text = "Do not use % and =";
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.Location = new System.Drawing.Point(99, 89);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(100, 1);
+            this.panel3.TabIndex = 16;
+            // 
+            // Faculty
+            // 
+            this.Faculty.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Faculty.Font = new System.Drawing.Font("Segoe UI Light", 11F);
+            this.Faculty.Location = new System.Drawing.Point(99, 69);
+            this.Faculty.Name = "Faculty";
+            this.Faculty.Size = new System.Drawing.Size(100, 20);
+            this.Faculty.TabIndex = 18;
+            this.Faculty.TabStop = false;
+            this.Faculty.Text = "Text";
+            this.Faculty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.Location = new System.Drawing.Point(14, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Faculty";
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.LightGray;
+            this.panel8.Location = new System.Drawing.Point(99, 118);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(100, 1);
+            this.panel8.TabIndex = 16;
+            // 
+            // Course
+            // 
+            this.Course.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Course.Font = new System.Drawing.Font("Segoe UI Light", 11F);
+            this.Course.Location = new System.Drawing.Point(99, 98);
+            this.Course.MaxLength = 1;
+            this.Course.Name = "Course";
+            this.Course.Size = new System.Drawing.Size(100, 20);
+            this.Course.TabIndex = 18;
+            this.Course.TabStop = false;
+            this.Course.Text = "Text";
+            this.Course.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.Color.Gray;
+            this.label13.Location = new System.Drawing.Point(14, 98);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 21);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Course";
+            // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.Course);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.Faculty);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -352,12 +427,12 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.VKGroupText);
+            this.Controls.Add(this.VKGroupID);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.TokenText);
+            this.Controls.Add(this.Token);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.GroupText);
+            this.Controls.Add(this.Group);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.CreatorLink);
@@ -391,12 +466,12 @@
         private System.Windows.Forms.Label CreatorLink;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox GroupText;
+        private System.Windows.Forms.TextBox Group;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox TokenText;
+        private System.Windows.Forms.TextBox Token;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox VKGroupText;
+        private System.Windows.Forms.TextBox VKGroupID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -407,5 +482,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.RichTextBox patternOutputText;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox Faculty;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox Course;
+        private System.Windows.Forms.Label label13;
     }
 }
