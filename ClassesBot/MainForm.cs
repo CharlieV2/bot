@@ -208,15 +208,15 @@ namespace ClassesBot
             #region Get Key
 
             // получение ключа
-            string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", ".*?", Variables.group);
+            string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
 
             // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
             // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
 
             //string key = Regex.Matches(tableResponse, pattern)[0].ToString();
-            var mathes = Regex.Matches(tableResponse, pattern);
+            var mathes = Regex.Match(tableResponse, pattern);
 
-            File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", mathes.Count.ToString() /*tableResponse*/);
+            File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", /*mathes.Count.ToString()*/ /*tableResponse*/ Regex.IsMatch(tableResponse, pattern).ToString());
 
             #endregion
 
