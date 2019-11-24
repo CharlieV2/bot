@@ -211,7 +211,7 @@ namespace ClassesBot
             string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
 
             // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
-            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
+            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч> 
 
             //string key = Regex.Matches(tableResponse, pattern)[0].ToString();
             var mathes = Regex.Match(tableResponse, pattern);
