@@ -206,7 +206,7 @@ namespace ClassesBot
             #endregion
 
             #region Get Key
-            // попробовать html-парсер
+            // попробовать html-парсер 
             // получение ключа
             string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
 
