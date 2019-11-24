@@ -206,9 +206,6 @@ namespace ClassesBot
             #endregion
 
             #region Get Key
-            // попробовать через html-parser
-            // получение ключа
-            string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
             //// попробовать html-парсер
 
             //// получение ключа
@@ -222,6 +219,9 @@ namespace ClassesBot
 
             //File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", /*mathes.Count.ToString()*/ /*tableResponse*/ Regex.IsMatch(tableResponse, pattern).ToString());
 
+            // попробовать через html-parser
+            // получение ключа
+            //string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
 
 
 
