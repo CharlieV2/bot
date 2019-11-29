@@ -144,6 +144,7 @@ namespace ClassesBot
             string url = "http://www.mstu.edu.ru/study/timetable/";
             string tableResponse = "";
             string numInstitute = "0";
+            string key = "";
 
 
             #region Get members IDs
@@ -163,7 +164,6 @@ namespace ClassesBot
 
             #region Get schedule table
 
-            // Получение таблицы расписаний
             WebRequest request = WebRequest.Create(url);
             request.Method = "POST";
 
@@ -198,7 +198,8 @@ namespace ClassesBot
             {
                 using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
                 {
-                    tableResponse = reader.ReadToEnd();
+                    tableResponse = reader.ReadToEnd().ToLower();
+                    //File.WriteAllText(@"C:\Users\Admin\Desktop\out.eye", tableResponse);
                 }
             }
             response.Close();
@@ -207,44 +208,42 @@ namespace ClassesBot
 
             #region Get Key
 
-            // получение ключа
-            string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
+            string pattern = string.Format(@"<{0}key=({0})&perstart={0}>{1}</a>", "[^<]*?", Variables.group.ToLower());
 
-            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=(.*?)&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
-            // ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>
+            key = Regex.Match(tableResponse, pattern).Groups[1].Value;
 
-            //string key = Regex.Matches(tableResponse, pattern)[0].ToString();
-            var mathes = Regex.Match(tableResponse, pattern);
+            // для просмотра найденой строки по паттерну
+            //string key = Regex.Match(tableResponse, pattern).Value;
 
-            File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", /*mathes.Count.ToString()*/ /*tableResponse*/ Regex.IsMatch(tableResponse, pattern).ToString());
+            //File.WriteAllText(@"C:\Users\Admin\Desktop\outputFinal.eye", key);
 
             #endregion
 
-            //#region Get Classes
-            //string FinalMessage = "";
+            #region Get Classes
+            string FinalMessage = "";
+            string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
 
-            //string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
+            pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
+            foreach (Match match in Regex.Matches(HtmlPage, pattern))
+                /*
+                 * 0 - Номер пары
+                 * 1 - Группа
+                 * 2 - Предмет
+                 * 3 - Тип занятия
+                 * 4 - Преподаватель
+                 * 5 - Кабинет
+                 */
+                FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
 
-            //pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
-            //foreach (Match match in Regex.Matches(HtmlPage, pattern))
-            //    /*
-            //     * 0 - Номер пары
-            //     * 1 - Группа
-            //     * 2 - Предмет
-            //     * 3 - Тип занятия
-            //     * 4 - Преподаватель
-            //     * 5 - Кабинет
-            //     */
-            //    FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
+            // Обозначение отсутствия пар
+            if (FinalMessage.Trim() == "")
+            {
+                FinalMessage = @"¯\_(ツ)_/¯";
+            }
 
-            //// Обозначение отсутствия пар
-            //if (FinalMessage.Trim() == "")
-            //{
-            //    FinalMessage = @"¯\_(ツ)_/¯";
-            //}
+            Message_Text.Invoke(new Action(() => Message_Text.Text = FinalMessage));
 
-            //#endregion
-
+            #endregion
 
             Download_but.Invoke(new Action(() => Download_but.Enabled = true));
         }
