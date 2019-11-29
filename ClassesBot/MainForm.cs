@@ -198,7 +198,7 @@ namespace ClassesBot
             {
                 using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
                 {
-                    tableResponse = reader.ReadToEnd();
+                    tableResponse = reader.ReadToEnd().ToLower();
                 }
             }
             response.Close();
@@ -207,7 +207,7 @@ namespace ClassesBot
 
             #region Get Key
 
-            string pattern = string.Format(@"<{0}key=({0})&perstart={0}>{1}</a>", "[^<]*?", Variables.group);
+            string pattern = string.Format(@"<{0}key=({0})&perstart={0}>{1}</a>", "[^<]*?", Variables.group.ToLower());
 
             key = Regex.Match(tableResponse, pattern).Groups[1].Value;
 
