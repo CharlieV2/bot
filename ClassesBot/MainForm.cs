@@ -198,7 +198,8 @@ namespace ClassesBot
             {
                 using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
                 {
-                    tableResponse = reader.ReadToEnd();
+                    //tableResponse = reader.ReadToEnd();
+                    File.WriteAllText(@"C:\Users\Admin\Desktop\output.eye", reader.ReadToEnd());
                 }
             }
             response.Close();
@@ -226,9 +227,14 @@ namespace ClassesBot
 
 
 
+
+
+
+
+
             #endregion
 
-            //#region Get Classes
+            #region Get Classes
             //string FinalMessage = "";
 
             //string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
@@ -251,7 +257,7 @@ namespace ClassesBot
             //    FinalMessage = @"¯\_(ツ)_/¯";
             //}
 
-            //#endregion
+            #endregion
 
 
             Download_but.Invoke(new Action(() => Download_but.Enabled = true));
