@@ -199,6 +199,7 @@ namespace ClassesBot
                 using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
                 {
                     tableResponse = reader.ReadToEnd().ToLower();
+                    //File.WriteAllText(@"C:\Users\Admin\Desktop\out.eye", tableResponse);
                 }
             }
             response.Close();
@@ -220,7 +221,6 @@ namespace ClassesBot
 
             #region Get Classes
             string FinalMessage = "";
-
             string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
 
             pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
