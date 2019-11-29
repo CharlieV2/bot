@@ -198,8 +198,8 @@ namespace ClassesBot
             {
                 using (StreamReader reader = new StreamReader(stream, Encoding.GetEncoding("windows-1251")))
                 {
-                    //tableResponse = reader.ReadToEnd();
-                    File.WriteAllText(@"C:\Users\Admin\Desktop\output.eye", reader.ReadToEnd());
+                    tableResponse = reader.ReadToEnd();
+                    File.WriteAllText(@"C:\Users\Admin\Desktop\output.eye", tableResponse);
                 }
             }
             response.Close();
@@ -207,24 +207,20 @@ namespace ClassesBot
             #endregion
 
             #region Get Key
-            //// получение ключа
-            //string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
-
-            //<a class="btn btn-default" href=schedule.php?key=({0})&perstart=2019-11-25&perend=2019-12-01&perkind=н>ИСТб18о-1</a>
-
-            ////string key = Regex.Matches(tableResponse, pattern)[0].ToString();
-            //var mathes = Regex.Match(tableResponse, pattern);
-
-            //File.WriteAllText(@"C:\Users\Admin\Desktop\Output.eye", /*mathes.Count.ToString()*/ /*tableResponse*/ Regex.IsMatch(tableResponse, pattern).ToString());
-
-            // попробовать через html-parser
             // получение ключа
-            //string pattern = string.Format(@"ИСТб18о-1</a></b></td><td><a href=schedule.php?key=196&perstart=2019-11-18&perend=2019-11-24&perkind=ч>", "", Variables.group);
 
+            string res = "";
 
+            string pattern = string.Format(@"{0}<{0}key=({0})&perstart={0}>ИСТб18о-1</a>{0}", "[^<]*?");
 
+            string key = 
 
+            foreach (Match match in Regex.Matches(tableResponse, pattern))
+            {
+                res += match.Groups[1].Value;
+            }
 
+            File.WriteAllText(@"C:\Users\Admin\Desktop\outputFinal.eye", res);
 
 
 
@@ -232,32 +228,32 @@ namespace ClassesBot
             #endregion
 
             #region Get Classes
-            //string FinalMessage = "";
+           //string FinalMessage = "";
 
-            //string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
+           //string HtmlPage = webclient.DownloadString(String.Format(@"http://www.mstu.edu.ru/study/timetable/schedule.php?key={0}&perstart={1}&perend={1}&perkind=%F7", key, Variables.Date));
 
-            //pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
-            //foreach (Match match in Regex.Matches(HtmlPage, pattern))
-            //    /*
-            //     * 0 - Номер пары
-            //     * 1 - Группа
-            //     * 2 - Предмет
-            //     * 3 - Тип занятия
-            //     * 4 - Преподаватель
-            //     * 5 - Кабинет
-            //     */
-            //    FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
+           //pattern = string.Format(@"<td>({0})</td>{0}<td>({0})<b>({0})</b>{0}<small>({0})</small>{0}</td>{0}<td>({0})</td>{0}<td>({0})</td>", "[^<]*?");
+           //foreach (Match match in Regex.Matches(HtmlPage, pattern))
+           //    /*
+           //     * 0 - Номер пары
+           //     * 1 - Группа
+           //     * 2 - Предмет
+           //     * 3 - Тип занятия
+           //     * 4 - Преподаватель
+           //     * 5 - Кабинет
+           //     */
+           //    FinalMessage += String.Format(Variables.patternOutput, match.Groups[1].Value, match.Groups[2].Value.ToLower(), match.Groups[3].Value.ToUpper(), match.Groups[4].Value, match.Groups[5].Value, match.Groups[6].Value);
 
-            //// Обозначение отсутствия пар
-            //if (FinalMessage.Trim() == "")
-            //{
-            //    FinalMessage = @"¯\_(ツ)_/¯";
-            //}
+           //// Обозначение отсутствия пар
+           //if (FinalMessage.Trim() == "")
+           //{
+           //    FinalMessage = @"¯\_(ツ)_/¯";
+           //}
 
             #endregion
 
 
-            Download_but.Invoke(new Action(() => Download_but.Enabled = true));
+           Download_but.Invoke(new Action(() => Download_but.Enabled = true));
         }
 
         void Send(Object MyData)
