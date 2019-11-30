@@ -83,6 +83,26 @@ namespace ClassesBot.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_off {
+            get {
+                object obj = ResourceManager.GetObject("check_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_on {
+            get {
+                object obj = ResourceManager.GetObject("check_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DownloadData_Active {
             get {
                 object obj = ResourceManager.GetObject("DownloadData_Active", resourceCulture);
@@ -96,6 +116,16 @@ namespace ClassesBot.Properties {
         internal static System.Drawing.Bitmap DownloadData_Default {
             get {
                 object obj = ResourceManager.GetObject("DownloadData_Default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_30 {
+            get {
+                object obj = ResourceManager.GetObject("edit_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

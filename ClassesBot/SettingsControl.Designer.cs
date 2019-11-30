@@ -117,7 +117,7 @@
             this.MSTULink.Size = new System.Drawing.Size(127, 21);
             this.MSTULink.TabIndex = 8;
             this.MSTULink.Text = "www.mstu.edu.ru";
-            this.MSTULink.Click += new System.EventHandler(this.MSTULink_Click);
+            this.MSTULink.Click += new System.EventHandler(this.Link_Click);
             // 
             // CreatorLink
             // 
@@ -130,7 +130,7 @@
             this.CreatorLink.Size = new System.Drawing.Size(126, 21);
             this.CreatorLink.TabIndex = 9;
             this.CreatorLink.Text = "vk.com/danyanet";
-            this.CreatorLink.Click += new System.EventHandler(this.CreatorLink_Click);
+            this.CreatorLink.Click += new System.EventHandler(this.Link_Click);
             // 
             // label6
             // 
