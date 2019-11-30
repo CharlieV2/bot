@@ -17,8 +17,9 @@ namespace ClassesBot
 {
     public partial class MainForm : Form
     {
-        SettingsControl settingsControl = new SettingsControl();
         LoadingControl loadingControl = new LoadingControl();
+        SettingsControl settingsControl = new SettingsControl();
+        StartForm startForm = new StartForm();
 
 
         string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ClassesBot.cfg";
@@ -33,17 +34,22 @@ namespace ClassesBot
 
             #region Create Controls
 
+            // Создание контрола загрузки
+            loadingControl.Location = new Point(0, 0);
+            this.Controls.Add(loadingControl);
+            loadingControl.Visible = false;
+            loadingControl.BringToFront();
+
             // Создание контрола настроек
             settingsControl.Location = new Point(0, 0);
             this.Controls.Add(settingsControl);
             settingsControl.Visible = false;
             settingsControl.BringToFront();
 
-            // Создание контрола загрузки
-            loadingControl.Location = new Point(0, 0);
-            this.Controls.Add(loadingControl);
-            loadingControl.Visible = false;
-            loadingControl.BringToFront();
+            // Создание контрола стартовой формы
+            startForm.Location = new Point(0, 0);
+            this.Controls.Add(startForm);
+            startForm.BringToFront();
 
             #endregion
 
