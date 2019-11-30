@@ -36,6 +36,8 @@
             this.CreatorLink = new System.Windows.Forms.Label();
             this.MSTULink = new System.Windows.Forms.Label();
             this.PresetsList = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,11 +143,35 @@
             this.PresetsList.Size = new System.Drawing.Size(289, 278);
             this.PresetsList.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(338, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 21);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "MSTU";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.Location = new System.Drawing.Point(338, 133);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Help";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.PresetsList);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -171,5 +197,7 @@
         private System.Windows.Forms.Label CreatorLink;
         private System.Windows.Forms.Label MSTULink;
         private System.Windows.Forms.FlowLayoutPanel PresetsList;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

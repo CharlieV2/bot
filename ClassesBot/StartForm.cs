@@ -72,42 +72,85 @@ namespace ClassesBot
             presetPanel.BackColor = Color.FromArgb(106, 138, 232);
             presetPanel.BorderStyle = BorderStyle.FixedSingle;
 
+
+
             Label presetName = new Label();
-            presetName.Width = 280;
+            presetName.Width = 200;
             presetName.Height = 40;
-            presetName.Text = Path.GetFileName(item);
+            presetName.Text = Path.GetFileNameWithoutExtension(item);
             presetName.ForeColor = Color.White;
             presetName.Cursor = Cursors.Hand;
             presetName.Font = new Font("Segoe UI", 10, FontStyle.Regular);
             presetName.Location = new Point(0, 0);
+
             presetName.MouseEnter += new EventHandler(Colorized);
             presetName.MouseLeave += new EventHandler(Uncolorized);
+
+
+
 
             PictureBox presetCheckBox = new PictureBox();
             presetCheckBox.Width = 16;
             presetCheckBox.Height = 16;
             presetCheckBox.SizeMode = PictureBoxSizeMode.Zoom;
             presetCheckBox.Image = Properties.Resources.check_on;
-            presetCheckBox.Location = new Point(200, 10);
-            // todo methods
+            presetCheckBox.Cursor = Cursors.Hand;
+            presetCheckBox.Location = new Point(202, 12);
+
+            presetCheckBox.Click += new EventHandler(CheckBoxSwitch);
+
+
 
             PictureBox presetEdit = new PictureBox();
             presetEdit.Width = 21;
             presetEdit.Height = 21;
             presetEdit.SizeMode = PictureBoxSizeMode.Zoom;
             presetEdit.Image = Properties.Resources.edit_30;
-            presetEdit.Location = new Point(221, 10);
+            presetEdit.Location = new Point(226, 10);
+            presetEdit.Cursor = Cursors.Hand;
 
+            presetEdit.MouseEnter += new EventHandler(Edit_Enter);
+            presetEdit.MouseLeave += new EventHandler(Edit_Leave);
+
+
+
+            PictureBox presetDelete = new PictureBox();
+            presetDelete.Width = 24;
+            presetDelete.Height = 24;
+            presetDelete.SizeMode = PictureBoxSizeMode.Zoom;
+            presetDelete.Image = Properties.Resources.del_default;
+            presetDelete.Location = new Point(250, 8);
+            presetDelete.Cursor = Cursors.Hand;
+
+            presetDelete.MouseEnter += new EventHandler(Delete_Enter);
+            presetDelete.MouseLeave += new EventHandler(Delete_Leave);
 
 
 
             void Colorized(object sender, EventArgs e) => presetPanel.BackColor = Color.FromArgb(58, 94, 202);
             void Uncolorized(object sender, EventArgs e) => presetPanel.BackColor = Color.FromArgb(106, 138, 232);
 
+            void Edit_Enter(object sender, EventArgs e) => presetEdit.Image = Properties.Resources.edit_30_active;
+            void Edit_Leave(object sender, EventArgs e) => presetEdit.Image = Properties.Resources.edit_30;
+
+            void Delete_Enter(object sender, EventArgs e) => presetDelete.Image = Properties.Resources.del_active;
+            void Delete_Leave(object sender, EventArgs e) => presetDelete.Image = Properties.Resources.del_default;
+
+            void CheckBoxSwitch (object sender, EventArgs e)
+            {
+                if ((sender as PictureBox).Image == new Bitmap(Properties.Resources.check_on))
+                    label1.Text = "yes";
+
+
+                //label1.Text = (sender as PictureBox).Image.ToString();
+                //label2.Text = Properties.Resources.check_on.ToString();
+            }
+
 
 
 
             PresetsList.Controls.Add(presetPanel);
+            presetPanel.Controls.Add(presetDelete);
             presetPanel.Controls.Add(presetCheckBox);
             presetPanel.Controls.Add(presetEdit);
             presetPanel.Controls.Add(presetName);
