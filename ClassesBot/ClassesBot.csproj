@@ -76,6 +76,7 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI.cs" />
     <Compile Include="Variables.cs" />
     <EmbeddedResource Include="LoadingControl.resx">
       <DependentUpon>LoadingControl.cs</DependentUpon>

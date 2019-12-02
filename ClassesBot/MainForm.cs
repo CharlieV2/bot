@@ -19,43 +19,21 @@ namespace ClassesBot
     {
         LoadingControl loadingControl = new LoadingControl();
         SettingsControl settingsControl = new SettingsControl();
-        StartForm startForm = new StartForm();
+        //StartForm startForm = new StartForm();
+
         PresetsSystem PresetsSystem = new PresetsSystem();
-
-
-       string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\ClassesBot.cfg";
+        UI UI = new UI();
         
-
 
         public MainForm()
         {
             InitializeComponent();
 
-            settingsControl.VisibleChanged += new EventHandler(UpdateForm);
-
-            #region Create Controls
-            // Создание контрола загрузки
-            loadingControl.Location = new Point(0, 0);
-            this.Controls.Add(loadingControl);
-            loadingControl.Visible = false;
-            loadingControl.BringToFront();
-
-            // Создание контрола настроек
-            settingsControl.Location = new Point(0, 0);
-            this.Controls.Add(settingsControl);
-            settingsControl.Visible = false;
-            settingsControl.BringToFront();
-
-            // Создание контрола стартовой формы
-            startForm.Location = new Point(0, 0);
-            //this.Controls.Add(startForm);
-            startForm.BringToFront();
-
-            #endregion
-
+            UI.CreateUserControls(this);
             PresetsSystem.ReadConfig();
 
             UpdateForm(null, null);
+            settingsControl.VisibleChanged += new EventHandler(UpdateForm);
 
             Text = $"ClBot - {Variables.group}";
         }
@@ -70,11 +48,13 @@ namespace ClassesBot
             string classes = GetData.Classes();
 
             // заполнение текстовых полей
+            this.Invoke(new Action(() =>
+            {
+                Members_Text.Text = membersIDs;
+                Message_Text.Text = classes;
+                Download_but.Enabled = true;
+            }));
 
-            Members_Text.Invoke(new Action(() => Members_Text.Text = membersIDs));
-            Message_Text.Invoke(new Action(() => Message_Text.Text = classes));
-
-            Download_but.Invoke(new Action(() => Download_but.Enabled = true));
         }
 
         public void Send(Object MyData)
@@ -90,8 +70,11 @@ namespace ClassesBot
                 webClient.DownloadString($"https://api.vk.com/method/messages.send?user_ids={IDs}&message={MyMessage}&random_id={random.Next(10000000)}&access_token={Variables.accessToken}&v=5.102");
 
 
-            Start_but.Invoke(new Action(() => Start_but.Enabled = true));
-            loadingControl.Invoke(new Action(() => loadingControl.Visible = false));
+            this.Invoke(new Action(() =>
+            {
+                Start_but.Enabled = true;
+                loadingControl.Visible = false;
+            }));
         }
 
 
