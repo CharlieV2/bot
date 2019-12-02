@@ -62,19 +62,13 @@ namespace ClassesBot
             Back_Button.Image = Properties.Resources.Back_Default;
         }
 
-        private void MSTULink_Click(object sender, EventArgs e)
+        private void Link_Click(object sender, EventArgs e)
         {
-            Process.Start("http://www.mstu.edu.ru");
+            if ((sender as Label).Text == "www.mstu.edu.ru")
+                Process.Start((sender as Label).Text);
+            else
+                Process.Start("https://" + (sender as Label).Text);
         }
-        private void CreatorLink_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://vk.com/danyanet");
-        }
-
-        //private void LinkClick(object sender, EventArgs e)
-        //{
-        //    Process.Start((sender as Label).Text);
-        //}
 
         #endregion
     }
