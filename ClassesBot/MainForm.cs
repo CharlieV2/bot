@@ -19,21 +19,21 @@ namespace ClassesBot
     {
         LoadingControl loadingControl = new LoadingControl();
         SettingsControl settingsControl = new SettingsControl();
-        //StartForm startForm = new StartForm();
+        StartForm startForm = new StartForm();
 
         PresetsSystem PresetsSystem = new PresetsSystem();
-        UI UI = new UI();
-        
+        //UI UI = new UI();
+
 
         public MainForm()
         {
             InitializeComponent();
 
-            UI.CreateUserControls(this);
+            CreateUserControls();
             PresetsSystem.ReadConfig();
 
             UpdateForm(null, null);
-            settingsControl.VisibleChanged += new EventHandler(UpdateForm);
+            //settingsControl.VisibleChanged += new EventHandler(UpdateForm);
 
             Text = $"ClBot - {Variables.group}";
         }
@@ -79,7 +79,7 @@ namespace ClassesBot
 
 
 
-        void UpdateForm(object sender, EventArgs e)
+        public void UpdateForm(object sender, EventArgs e)
         {
             if (settingsControl.Visible == false)
             {
@@ -106,6 +106,27 @@ namespace ClassesBot
         }
 
 
+        public void CreateUserControls()
+        {
+            // Создание контрола загрузки
+            loadingControl.Location = new Point(0, 0);
+            this.Controls.Add(loadingControl);
+            loadingControl.Visible = false;
+            loadingControl.BringToFront();
+
+            // Создание контрола настроек
+            settingsControl.Location = new Point(0, 0);
+            this.Controls.Add(settingsControl);
+            settingsControl.Visible = false;
+            settingsControl.BringToFront();
+            settingsControl.VisibleChanged += new EventHandler(UpdateForm);
+
+            // Создание контрола стартовой формы
+            startForm.Location = new Point(0, 0);
+            //this.Controls.Add(startForm);
+            startForm.BringToFront();
+        }
+
         #region Buttons
         public void Setting_Enter(object sender, EventArgs e)
         {
@@ -115,7 +136,7 @@ namespace ClassesBot
         {
             Settings_Button.Image = Properties.Resources.Settings_Default;
         }
-        private void Settings_Button_Click(object sender, EventArgs e)
+        private void Settings_Click(object sender, EventArgs e)
         {
             settingsControl.Visible = true;
         }

@@ -95,7 +95,7 @@
             this.Settings_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Settings_Button.TabIndex = 2;
             this.Settings_Button.TabStop = false;
-            this.Settings_Button.Click += new System.EventHandler(this.Settings_Button_Click);
+            this.Settings_Button.Click += new System.EventHandler(this.Settings_Click);
             this.Settings_Button.MouseEnter += new System.EventHandler(this.Setting_Enter);
             this.Settings_Button.MouseLeave += new System.EventHandler(this.Setting_Leave);
             // 
