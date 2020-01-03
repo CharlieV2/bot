@@ -22,7 +22,6 @@ namespace ClassesBot
         StartForm startForm = new StartForm();
 
         PresetsSystem PresetsSystem = new PresetsSystem();
-        //UI UI = new UI();
 
 
         public MainForm()

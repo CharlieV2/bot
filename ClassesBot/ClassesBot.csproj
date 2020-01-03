@@ -78,7 +78,24 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI.cs" />
+    <Compile Include="Tabs-format.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs-format.Designer.cs">
+      <DependentUpon>Tabs-format.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs-mstu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs-mstu.Designer.cs">
+      <DependentUpon>Tabs-mstu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs-vk.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tabs-vk.Designer.cs">
+      <DependentUpon>Tabs-vk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variables.cs" />
     <EmbeddedResource Include="LoadingControl.resx">
       <DependentUpon>LoadingControl.cs</DependentUpon>
@@ -101,6 +118,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabs-format.resx">
+      <DependentUpon>Tabs-format.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabs-mstu.resx">
+      <DependentUpon>Tabs-mstu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tabs-vk.resx">
+      <DependentUpon>Tabs-vk.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -17,22 +17,97 @@ namespace ClassesBot
         public SettingsControl()
         {
             InitializeComponent();
+            InitializeTabs();
         }
+
+
+        #region CustomTabControl
+        // panels
+        Tabs_mstu mstu = new Tabs_mstu();
+        Tabs_vk vk = new Tabs_vk();
+        Tabs_format format = new Tabs_format();
+
+        Button CurrentTab;
+
+        public void InitializeTabs()
+        {
+            mstu.Location = new Point(1, 1);
+            CustomTabControl.Controls.Add(mstu);
+
+            vk.Location = new Point(1, 1);
+            CustomTabControl.Controls.Add(vk);
+
+            format.Location = new Point(1, 1);
+            CustomTabControl.Controls.Add(format);
+
+            CurrentTab = MstuTab;
+            Transform(CurrentTab);
+        }
+
+
+        // helpful functions
+        private void DisableAll()
+        {
+            // reset color
+            (CurrentTab as Button).BackColor = Color.FromArgb(255, 201, 201, 201);
+
+            // reset transform
+            CurrentTab.Height = CurrentTab.Height - 2;
+            CurrentTab.Width = CurrentTab.Width - 4;
+            CurrentTab.Location = new Point(CurrentTab.Location.X + 2, CurrentTab.Location.Y + 2);
+        }
+        private void Transform(object sender)
+        {
+            CurrentTab = (sender as Button);
+            CurrentTab.BringToFront();
+            CurrentTab.Height = CurrentTab.Height + 2;
+            CurrentTab.Width = CurrentTab.Width + 4;
+            CurrentTab.Location = new Point(CurrentTab.Location.X - 2, CurrentTab.Location.Y - 2);
+        }
+
+
+        // tab click
+        private void MstuTab_Click(object sender, EventArgs e)
+        {
+            DisableAll();
+            MstuTab.BackColor = Color.FromArgb(255, 123, 165, 240);
+            mstu.BringToFront();
+
+            Transform(sender);
+        }
+        private void VkTab_Click(object sender, EventArgs e)
+        {
+            DisableAll();
+            VkTab.BackColor = Color.FromArgb(255, 123, 165, 240);
+            vk.BringToFront();
+
+            Transform(sender);
+        }
+        private void FormatTab_Click(object sender, EventArgs e)
+        {
+            DisableAll();
+            FormatTab.BackColor = Color.FromArgb(255, 123, 165, 240);
+            format.BringToFront();
+
+            Transform(sender);
+        }
+        #endregion
+
 
         void UpdateForm(object sender, EventArgs e)
         {
             if (Visible == true)
             {
                 // Установка текущих значений в поля редактирования
-                Group.Text = (Variables.group == "set the group in settings") ? "" : Variables.group;
-                Faculty.Text = Variables.faculty;
-                Course.Text = Variables.course;
+                mstu.Group.Text = (Variables.group == "set the group in settings") ? "" : Variables.group;
+                mstu.Faculty.Text = Variables.faculty;
+                mstu.Course.Text = Variables.course;
 
-                VKGroupID.Text = Variables.vkgroupID;
-                Token.Text = Variables.accessToken;
+                vk.VKGroupID.Text = Variables.vkgroupID;
+                vk.Token.Text = Variables.accessToken;
 
-                patternOutputText.Text = Variables.patternOutput;
-                DateText.Text = Variables.Date;
+                format.patternOutputText.Text = Variables.patternOutput;
+                format.DateText.Text = Variables.Date;
             }
         }
 
@@ -41,15 +116,15 @@ namespace ClassesBot
         private void Back_Button_Click(object sender, EventArgs e)
         {
             // Сохранение новых значений
-            Variables.group = (Group.Text == "") ? "set the group in settings" : Group.Text;
-            Variables.faculty = Faculty.Text;
-            Variables.course = Course.Text;
+            Variables.group = (mstu.Group.Text == "") ? "set the group in settings" : mstu.Group.Text;
+            Variables.faculty = mstu.Faculty.Text;
+            Variables.course = mstu.Course.Text;
 
-            Variables.vkgroupID = VKGroupID.Text;
-            Variables.accessToken = (Token.Text == "") ? "" : Token.Text;
+            Variables.vkgroupID = vk.VKGroupID.Text;
+            Variables.accessToken = (vk.Token.Text == "") ? "" : vk.Token.Text;
 
-            Variables.patternOutput = patternOutputText.Text;
-            Variables.Date = DateText.Text;
+            Variables.patternOutput = format.patternOutputText.Text;
+            Variables.Date = format.DateText.Text;
 
             Visible = false;
         }
